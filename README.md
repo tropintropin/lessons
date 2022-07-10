@@ -1,2 +1,2 @@
 # lessons
-Repository for lessons projects
+Repository for my educational and some pet projects.
