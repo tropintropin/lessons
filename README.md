@@ -1,2 +1,2 @@
 # lessons
-Resitory for lessons projects
+Repository for lessons projects
