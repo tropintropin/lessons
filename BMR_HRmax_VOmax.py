@@ -59,5 +59,5 @@ my_bmr, my_gender = bmr(ask_weight, ask_height, ask_age, ask_gender)
 
 print(f"Ваш пол: {my_gender}")
 print(f"Ваш максимальный пульс: {my_hr_max:.0f} уд. в минуту.")
-print(f"Максимальный объём потребляемого кислорода составит: {my_vo2_max:.2f} мл на кг массы тела в минуту")
-print(f"Суточный калораж (BMR) = {my_bmr:.2f} ккал. (Рассчитано по формуле The Mifflin St Jeor)")
+print(f"Максимальный объём потребляемого кислорода составит:\n{my_vo2_max:.2f} мл на кг массы тела в минуту")
+print(f"Суточный калораж (BMR) = {my_bmr:.2f} ккал.\n(BMR рассчитан по формуле The Mifflin St Jeor)")
