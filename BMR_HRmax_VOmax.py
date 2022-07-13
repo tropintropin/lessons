@@ -1,3 +1,19 @@
+"""Simple sport calculator
+
+Program help you to calculate your maximal heart rate,
+maximal VO2 volume and your basal metabolic rate (BMR).
+
+Allowed input for gender is cirillic letters 'М', 'м' and
+latin letters 'M', 'm' for male and 'Ж', 'ж', 'F', 'f', 'W', 'w'
+for female.
+
+Other inputs support only integers.
+
+Author: Valery Tropin
+tropin.tropin@gmail.com
+
+"""
+
 def hr_max(ask_age):
     out_hr_max = 205.8 - (0.685 * float(ask_age))
     return out_hr_max
@@ -19,7 +35,7 @@ def bmr(ask_weight, ask_height, ask_age, ask_gender):
         return out_bmr, my_gender
 
 while True:
-    ask_gender = input("Какого вы пола? Пожалуйста, указывайте ваш биологический пол!\nВведите «М», если вы мужчина или «Ж», если женщина.\n")
+    ask_gender = input("Какого вы пола?\nПожалуйста, указывайте ваш биологический пол!\nВведите «М», если вы мужчина или «Ж», если женщина.\n")
     if ask_gender.lower() not in ['м', 'ж', 'm', 'f', 'w']:
         continue
     else:
