@@ -1,2 +1,2 @@
 # lessons
-Repository for my educational and some pet projects.
+This is the place for my pet projects and code snippets.
