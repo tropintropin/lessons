@@ -15,19 +15,22 @@ tropin.tropin@gmail.com
 
 """
 
+
 def hr_max(ask_age):
     out_hr_max = 205.8 - (0.685 * int(ask_age))
     return out_hr_max
-              
+
+
 def vo2_max(out_hr_max, ask_hr_rest):
     out_vo2_max = 15 * (int(out_hr_max) / int(ask_hr_rest))
     return out_vo2_max
-              
+
+
 def bmr(ask_weight, ask_height, ask_age, ask_gender):
     if ask_gender.lower() in ('м', 'm'):
         my_gender = 'мужской'
         out_bmr_male = (
-            10 * float(ask_weight) + 6.25 
+            10 * float(ask_weight) + 6.25
             * int(ask_height) - 5.0 * int(ask_age) + 5
 )
         out_bmr = out_bmr_male
@@ -35,11 +38,12 @@ def bmr(ask_weight, ask_height, ask_age, ask_gender):
     elif ask_gender.lower() in ('ж', 'f', 'w'):
         my_gender = 'женский'
         out_bmr_woman = (
-            10 * float(ask_weight) + 6.25 
+            10 * float(ask_weight) + 6.25
             * int(ask_height) - 5.0 * int(ask_age) - 161
 )
         out_bmr = out_bmr_woman
         return out_bmr, my_gender
+
 
 while True:
     ask_gender = input(
