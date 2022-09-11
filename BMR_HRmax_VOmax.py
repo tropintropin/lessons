@@ -43,35 +43,35 @@ while True:
         break
 
 while True:
-    ask_age = input("Сколько вам лет?\n")
-    if ask_age.isnumeric() != True:
+    ask_age = input("Сколько вам полных лет?\n")
+    if not ask_age.isnumeric():
         continue
     else:
         break
 
 while True:
     ask_height = input("Какого вы роста (в см)?\n")
-    if ask_height.isnumeric() != True:
+    if not ask_height.isnumeric():
         continue
     else:
         break
 
 while True:
     ask_weight = input("Сколько вы весите (в кг)?\n")
-    if ask_weight.isnumeric() != True:
+    if not ask_weight.isnumeric():
         continue
     else:
         break
 
 while True:
     ask_hr_rest = input("Каков ваш пульс в состоянии покоя (в ударах в минуту)?\n")
-    if ask_hr_rest.isnumeric() != True:
+    if not ask_hr_rest.isnumeric():
         continue
     else:
         break
 
 my_hr_max = hr_max(ask_age)
-my_vo2_max = vo2_max(hr_max(ask_age), ask_hr_rest)
+my_vo2_max = vo2_max(my_hr_max, ask_hr_rest)
 my_bmr, my_gender = bmr(ask_weight, ask_height, ask_age, ask_gender)
 
 print()
