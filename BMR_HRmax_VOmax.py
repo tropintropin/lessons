@@ -26,17 +26,29 @@ def vo2_max(out_hr_max, ask_hr_rest):
 def bmr(ask_weight, ask_height, ask_age, ask_gender):
     if ask_gender.lower() in ('м', 'm'):
         my_gender = 'мужской'
-        out_bmr_male = 10 * float(ask_weight) + 6.25 * int(ask_height) - 5.0 * int(ask_age) + 5
+        out_bmr_male = (
+            10 * float(ask_weight) + 6.25 
+            * int(ask_height) - 5.0 * int(ask_age) + 5
+)
         out_bmr = out_bmr_male
         return out_bmr, my_gender
     elif ask_gender.lower() in ('ж', 'f', 'w'):
         my_gender = 'женский'
-        out_bmr_woman = 10 * float(ask_weight) + 6.25 * int(ask_height) - 5.0 * int(ask_age) - 161
+        out_bmr_woman = (
+            10 * float(ask_weight) + 6.25 
+            * int(ask_height) - 5.0 * int(ask_age) - 161
+)
         out_bmr = out_bmr_woman
         return out_bmr, my_gender
 
 while True:
-    ask_gender = input("Какого вы пола?\nПожалуйста, указывайте ваш биологический пол!\nВведите «М», если вы мужчина или «Ж», если женщина.\n")
+    ask_gender = input(
+'''
+Какого вы пола?
+Пожалуйста, указывайте ваш биологический пол!
+Введите «М», если вы мужчина или «Ж», если женщина.
+'''
+)
     if ask_gender.lower() not in ('м', 'ж', 'm', 'f', 'w'):
         continue
     else:
