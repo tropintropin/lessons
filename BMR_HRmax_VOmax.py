@@ -54,6 +54,7 @@ while True:
 '''
 )
     if ask_gender.lower() not in ('м', 'ж', 'm', 'f', 'w'):
+        print('Вы ввели неверную букву :-(')
         continue
     else:
         break
@@ -61,6 +62,7 @@ while True:
 while True:
     ask_age = input("Сколько вам полных лет?\n")
     if not ask_age.isnumeric():
+        print('Вы ввели неверную цифру :-(')
         continue
     else:
         break
@@ -68,6 +70,7 @@ while True:
 while True:
     ask_height = input("Какого вы роста (в см)?\n")
     if not ask_height.isnumeric():
+        print('Вы ввели неверную цифру :-(')
         continue
     else:
         break
@@ -75,6 +78,7 @@ while True:
 while True:
     ask_weight = input("Сколько вы весите (в кг)?\n")
     if not ask_weight.isnumeric():
+        print('Вы ввели неверную цифру :-(')
         continue
     else:
         break
@@ -82,6 +86,7 @@ while True:
 while True:
     ask_hr_rest = input("Каков ваш пульс в состоянии покоя (в ударах в минуту)?\n")
     if not ask_hr_rest.isnumeric():
+        print('Вы ввели неверную цифру :-(')
         continue
     else:
         break
