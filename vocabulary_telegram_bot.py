@@ -2,7 +2,6 @@
 A simple Telegram bot for Hexlet's practice.
 '''
 
-from itertools import count
 import random
 
 # '': '',
@@ -24,14 +23,13 @@ en_ru_hotel = {
     'номер на двоих': 'double room',
     'Я бы хотел заказать номер': 'I want to order a room',
     'У вас есть свободные номера?': 'Do you have a room?',
-    '': '',
-    '': '',
-    '': '',
-    '': ''
+    'регистрация (администратор)': 'reception',
+    'Сколько стоит номер в сутки на человека?': 'How does it cost a night per a man?',
+    'Я оплачу наличными': 'I pay in cash',
+    'Не работает свет': 'Something wrong with light'
 }
 
-print('Tell me what theme do you want to repeat?')
-print('Greetings - enter 1. Hotel - enter 2.')
+print('Tell me what theme do you want to repeat?\nGreetings - enter 1. Hotel - enter 2.')
 theme_choice = int(input('Enter your choice here: '))
 if theme_choice == 1:
     words = en_ru_greetings
@@ -57,7 +55,7 @@ while counter:
             correct_answer = i
 
         print(i, words[answer])
-    
+
     user_answer = int(input('Enter the correct number: '))
 
     if user_answer == correct_answer:
