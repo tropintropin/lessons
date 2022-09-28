@@ -6,9 +6,10 @@ import json
 import random
 
 
-# def translation_direction():
-#     direction = int(input("Choose the direction of translation: enter 1 for Russian to English and 2 for English to Russian.\n"))
-#     return direction
+def translation_direction():
+    direction = int(input("Choose the direction of translation: enter 1 for Russian to English and 2 for English to Russian.\n"))
+    return direction
+
 
 def dict_open():
     with open('cards.json', encoding='utf-8') as cards_file:
@@ -16,14 +17,20 @@ def dict_open():
         return cards
 
 
-def theme_decision(cards):
+def theme_decision(cards, direction):
     print("Tell me what theme do you want to repeat?\nGreetings - enter 1. Hotel - enter 2.")
     theme_choice = int(input("Enter your choice here: "))
     if theme_choice == 1:
         for words in cards["en_ru_greetings"]:
+            # обратный словарь сюда
+            if direction == 2:
+                words = {v: k for k, v in words.items()}
             return words
     elif theme_choice == 2:
         for words in cards["en_ru_hotel"]:
+            # обратный словарь сюда
+            if direction == 2:
+                words = {v: k for k, v in words.items()}
             return words
 
 
@@ -61,7 +68,7 @@ def game(words, level):
             break
 
     if not counter:
-        print("Congratulations! You did it!")   
+        print("Congratulations! You did it!")
 
 
-game(theme_decision(dict_open()), level_decision())
+game(theme_decision(dict_open(), translation_direction()), level_decision())
