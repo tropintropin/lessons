@@ -6,6 +6,10 @@ import json
 import random
 
 
+# def translation_direction():
+#     direction = int(input("Choose the direction of translation: enter 1 for Russian to English and 2 for English to Russian.\n"))
+#     return direction
+
 def dict_open():
     with open('cards.json', encoding='utf-8') as cards_file:
         cards = json.load(cards_file)
@@ -57,7 +61,7 @@ def game(words, level):
             break
 
     if not counter:
-        print("Congratulations! You did it!")
+        print("Congratulations! You did it!")   
 
 
 game(theme_decision(dict_open()), level_decision())
