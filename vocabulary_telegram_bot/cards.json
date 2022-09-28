@@ -1,0 +1,29 @@
+{
+    "en_ru_greetings": [
+        {
+            "здравствуйте": "hello",
+            "привет": "hi",
+            "добрый вечер": "good evening",
+            "добрый день": "good day",
+            "доброе утро": "good morning",
+            "доброй ночи": "good night",
+            "до свидания": "good bye",
+            "пока": "bye",
+            "до встречи": "see you"
+        }
+    ],
+
+"en_ru_hotel": [
+        {
+            "гостиница, отель": "hotel",
+            "номер на одного": "single room",
+            "номер на двоих": "double room",
+            "Я бы хотел заказать номер": "I want to order a room",
+            "У вас есть свободные номера?": "Do you have a room?",
+            "регистрация (администратор)": "reception",
+            "Сколько стоит номер в сутки на человека?": "How does it cost a night per a man?",
+            "Я оплачу наличными": "I pay in cash",
+            "Не работает свет": "Something wrong with light"
+        }
+    ]
+}
