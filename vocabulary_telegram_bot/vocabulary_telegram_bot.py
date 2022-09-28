@@ -1,5 +1,5 @@
 """
-A simple Telegram bot for Hexlet"s practice.
+A simple Telegram bot for Hexlet's practice.
 """
 
 import json
@@ -7,7 +7,7 @@ import random
 
 
 def translation_direction():
-    direction = int(input("Choose the direction of translation: enter 1 for Russian to English and 2 for English to Russian.\n"))
+    direction = int(input("Choose the direction of translation.\nEnter 1 for Russian to English and 2 for English to Russian: "))
     return direction
 
 
@@ -35,7 +35,7 @@ def theme_decision(cards, direction):
 
 
 def level_decision():
-    level_choice = int(input("Choose the level of difficulty: enter 1 for easy and 2 for hard."))
+    level_choice = int(input("Choose the level of difficulty.\nEnter 1 for easy and 2 for hard: "))
     if level_choice == 1:
         level = 4
     elif level_choice == 2:
