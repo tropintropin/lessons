@@ -12,17 +12,26 @@ import random
 
 # updater = Updater(token='TOKEN', use_context=True)
 
+def is_proper_input(type_=None, min_=None, max_=None):
+    while True:
+        value_ = input('Enter your answer here: ')
+        if type_ is not None:
+            try:
+                value_ = type_(value_)
+            except ValueError:
+                print("Input type must be {0}.".format(type_.__name__))
+                continue
+        if max_ is not None and value_ > max_:
+            print("Input must be less than or equal to {0}.".format(max_))
+        elif min_ is not None and value_ < min_:
+            print("Input must be greater than or equal to {0}.".format(min_))
+        else:
+            return value_
+
 
 def translation_direction():
-    while True:
-        direction = input("Choose the direction of translation.\nEnter 1 for Russian to English and 2 for English to Russian: ")
-        if direction.isnumeric() and direction in ('1', '2'):
-            direction = int(direction)
-            break
-        else:
-            print('Please enter 1 or 2: ')
-            continue
-
+    print("Choose the direction of translation.\nEnter 1 for Russian to English and 2 for English to Russian.")
+    direction = is_proper_input(type_=int, min_=1, max_=2)
     return direction
 
 
@@ -34,14 +43,7 @@ def dict_open():
 
 def theme_decision(cards, direction):
     print("Tell me what theme do you want to repeat?\nGreetings - enter 1. Hotel - enter 2.")
-    while True:
-        theme_choice = input("Enter your choice here: ")
-        if theme_choice.isnumeric() and theme_choice in ('1', '2'):
-            theme_choice = int(theme_choice)
-            break
-        else:
-            print('Please enter 1 or 2: ')
-            continue
+    theme_choice = is_proper_input(type_=int, min_=1, max_=2)
 
     if theme_choice == 1:
         for words in cards["en_ru_greetings"]:
@@ -56,14 +58,8 @@ def theme_decision(cards, direction):
 
 
 def level_decision():
-    while True:
-        level_choice = input("Choose the level of difficulty.\nEnter 1 for easy and 2 for hard: ")
-        if level_choice.isnumeric() and level_choice in ('1', '2'):
-            level_choice = int(level_choice)
-            break
-        else:
-            print('Please enter 1 or 2: ')
-            continue
+    print("Choose the level of difficulty.\nEnter 1 for easy and 2 for hard.")
+    level_choice = is_proper_input(type_=int, min_=1, max_=2)
 
     if level_choice == 1:
         level = 4
@@ -87,14 +83,7 @@ def game(words, level):
 
             print(i, words[answer])
 
-        while True:
-            user_answer = input("Enter the correct number: ")
-            if user_answer.isnumeric():
-                user_answer = int(user_answer)
-                break
-            else:
-                print('Please enter a number: ')
-                continue
+        user_answer = is_proper_input(type_=int)
 
         if user_answer == correct_answer:
             print("Correct!")
