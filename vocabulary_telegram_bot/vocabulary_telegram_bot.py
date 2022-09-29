@@ -15,12 +15,14 @@ import random
 
 def translation_direction():
     while True:
-        direction = int(input("Choose the direction of translation.\nEnter 1 for Russian to English and 2 for English to Russian: "))
-        if not direction.isnumeric() and (direction != 1 or direction != 2):
+        direction = input("Choose the direction of translation.\nEnter 1 for Russian to English and 2 for English to Russian: ")
+        if direction.isnumeric() and direction in ('1', '2'):
+            direction = int(direction)
+            break
+        else:
             print('Please enter 1 or 2: ')
             continue
-        else:
-            break
+
     return direction
 
 
@@ -33,22 +35,21 @@ def dict_open():
 def theme_decision(cards, direction):
     print("Tell me what theme do you want to repeat?\nGreetings - enter 1. Hotel - enter 2.")
     while True:
-        theme_choice = int(input("Enter your choice here: "))
-        if not theme_choice.isnumeric() and (theme_choice != 1 or theme_choice != 2):
+        theme_choice = input("Enter your choice here: ")
+        if theme_choice.isnumeric() and theme_choice in ('1', '2'):
+            theme_choice = int(theme_choice)
+            break
+        else:
             print('Please enter 1 or 2: ')
             continue
-        else:
-            break
 
     if theme_choice == 1:
         for words in cards["en_ru_greetings"]:
-            # обратный словарь сюда
             if direction == 2:
                 words = {v: k for k, v in words.items()}
             return words
     elif theme_choice == 2:
         for words in cards["en_ru_hotel"]:
-            # обратный словарь сюда
             if direction == 2:
                 words = {v: k for k, v in words.items()}
             return words
@@ -56,12 +57,13 @@ def theme_decision(cards, direction):
 
 def level_decision():
     while True:
-        level_choice = int(input("Choose the level of difficulty.\nEnter 1 for easy and 2 for hard: "))
-        if not level_choice.isnumeric() and (level_choice != 1 or level_choice != 2):
+        level_choice = input("Choose the level of difficulty.\nEnter 1 for easy and 2 for hard: ")
+        if level_choice.isnumeric() and level_choice in ('1', '2'):
+            level_choice = int(level_choice)
+            break
+        else:
             print('Please enter 1 or 2: ')
             continue
-        else:
-            break
 
     if level_choice == 1:
         level = 4
@@ -86,12 +88,13 @@ def game(words, level):
             print(i, words[answer])
 
         while True:
-            user_answer = int(input("Enter the correct number: "))
-            if not user_answer.isnumeric():
+            user_answer = input("Enter the correct number: ")
+            if user_answer.isnumeric():
+                user_answer = int(user_answer)
+                break
+            else:
                 print('Please enter a number: ')
                 continue
-            else:
-                break
 
         if user_answer == correct_answer:
             print("Correct!")
