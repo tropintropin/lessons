@@ -1,9 +1,9 @@
-Belle
-Beast
-Gaston
-Maurice
-Lumière
-Cogsworth
-Mrs_Potts
-Chip
-Monsieur_DArque
+Belle 17
+Beast 20
+Gaston 8
+Maurice 12
+Lumière 1
+Cogsworth 1
+Mrs_Potts 1
+Chip 2
+Monsieur_DArque 1
