@@ -80,7 +80,6 @@ def game():
     guessed_words = []
     while True:
         guessed_words.append(play())
-        print(f'Вы угадали {len(guessed_words)} раз.')
         if guessed_words:
             print('Угаданные слова:')
             print(*guessed_words, sep=' ')
