@@ -82,7 +82,8 @@ def game():
         guessed_words.append(play())
         print(f'Вы угадали {len(guessed_words)} раз.')
         if guessed_words:
-            print(f'Угаданные слова:\n{guessed_words}')
+            print('Угаданные слова:')
+            print(*guessed_words, sep=' ')
         print('Хотите сыграть ещё? "Д" — да, "Н" — нет.')
         ask = get_letter()
         if ask == 'Д':
