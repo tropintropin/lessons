@@ -1,3 +1,9 @@
+'''
+Hangman is a linguistic game in which you have to guess the word \
+    and prevent the little man from being hanged.
+'''
+
+
 import json
 import random
 from stages import display_hangman
@@ -73,14 +79,14 @@ def play():
 def game():
     guessed_words = []
     while True:
-        guessed_words.extend(play())
+        guessed_words.append(play())
         print(f'Вы угадали {len(guessed_words)} раз.')
         if guessed_words:
             print(f'Угаданные слова:\n{guessed_words}')
         print('Хотите сыграть ещё? "Д" — да, "Н" — нет.')
         ask = get_letter()
         if ask == 'Д':
-            guessed_words.extend(play())
+            guessed_words.append(play())
         else:
             break
 
