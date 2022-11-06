@@ -3,6 +3,8 @@ Hangman is a linguistic game in which you have to guess the word \
     and prevent the little man from being hanged.
 '''
 
+# https://stepik.org/lesson/349847/step/8?discussion=6509871&unit=333702
+
 
 import json
 import random
@@ -11,7 +13,7 @@ from stages import display_hangman
 
 def get_letter() -> str:
     while True:
-        letter = input('Введите букву: ').upper()
+        letter = input('Введите букву русскую букву: ').upper()
         if len(letter) == 1 and 1039 < ord(letter) < 1072:
             return letter
 
@@ -68,6 +70,7 @@ def play():
             print_words(word_completion)
             print(f'Неверно! Осталось {tries} попыток!')
             print(display_hangman(tries))
+
     if not guessed:
         print_words(word_completion)
         print('Ты проиграл и не спас своего висельника!')
@@ -79,14 +82,15 @@ def play():
 def game():
     guessed_words = []
     while True:
-        guessed_words.append(play())
+        guessed_words.extend(play())
         if guessed_words:
             print('Угаданные слова:')
             print(*guessed_words, sep=' ')
+
         print('Хотите сыграть ещё? "Д" — да, "Н" — нет.')
         ask = get_letter()
         if ask == 'Д':
-            guessed_words.append(play())
+            guessed_words.extend(play())
         else:
             break
 
