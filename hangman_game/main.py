@@ -1,10 +1,11 @@
 import json
+import random
 
 
-words = []
-with open('words.txt', 'r') as f:
-    for line in f:
-        words.append(line[:-1])
+def get_word() -> str:
+    with open('words.json', 'r', encoding='utf-8') as f:
+        word_list = json.load(f)
+    return random.choice(word_list).upper()
 
-with open('words.json', 'w') as f:
-    json.dump(words, f, indent=4, ensure_ascii=False)
+
+print(get_word())
