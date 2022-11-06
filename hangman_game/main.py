@@ -1,5 +1,6 @@
 import json
 import random
+from stages import stages
 
 
 def get_word() -> str:
@@ -8,4 +9,6 @@ def get_word() -> str:
     return random.choice(word_list).upper()
 
 
-print(get_word())
+def display_hangman(tries: int) -> str:
+    if 0 <= tries <= 6:
+        return stages[tries]
