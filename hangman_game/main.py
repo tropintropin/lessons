@@ -16,6 +16,11 @@ def get_word() -> str:
     return random.choice(word_list).upper()
 
 
+def print_words(word_completion):
+    print('~ ' * len(word_completion))
+    print(*word_completion, sep=' ')
+
+
 def play():
     guessed_words = []
     guessed = False
@@ -26,7 +31,7 @@ def play():
 
     print('Сыграем в «Висельника»!')
     print('Вам нужно отгадать слово:')
-    print(*word_completion, sep=' ')
+    print_words(word_completion)
     print('Вам дано 6 попыток. За каждый неверный ответ висельник\n \
         приблизится к эшафоту!')
     print(display_hangman(tries))
@@ -35,7 +40,7 @@ def play():
         if ''.join(ask_word) == ''.join(word_completion):
             guessed_words.append(''.join(ask_word))
             print('Ты победил! Загаданное слово было:')
-            print(*ask_word, sep=' ')
+            print_words(ask_word)
             guessed = True
             break
 
@@ -50,18 +55,34 @@ def play():
                 if user_guess == v:
                     word_completion[i] = user_guess
             print('Так держать!')
-            print(*word_completion, sep=' ')
+            print_words(word_completion)
         else:
             guessed_letters.append(user_guess)
             tries -= 1
-            print(*word_completion, sep=' ')
+            print_words(word_completion)
             print(f'Неверно! Осталось {tries} попыток!')
             print(display_hangman(tries))
     if not guessed:
-        print(*word_completion, sep=' ')
+        print_words(word_completion)
         print('Ты проиграл и не спас своего висельника!')
         print('Загаданное слово было:')
-        print(*ask_word, sep=' ')
+        print_words(ask_word)
+    return guessed_words
 
 
-play()
+def game():
+    guessed_words = []
+    while True:
+        guessed_words.extend(play())
+        print(f'Вы угадали {len(guessed_words)} раз.')
+        if guessed_words:
+            print(f'Угаданные слова:\n{guessed_words}')
+        print('Хотите сыграть ещё? "Д" — да, "Н" — нет.')
+        ask = get_letter()
+        if ask == 'Д':
+            guessed_words.extend(play())
+        else:
+            break
+
+
+game()
