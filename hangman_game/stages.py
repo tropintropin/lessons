@@ -63,3 +63,8 @@ stages = (
     -
     """
 )
+
+
+def display_hangman(tries: int) -> str:
+    if 0 <= tries <= 6:
+        return stages[tries]
