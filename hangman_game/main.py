@@ -13,7 +13,7 @@ from stages import display_hangman
 
 def get_letter() -> str:
     while True:
-        letter = input('Введите букву русскую букву: ').upper()
+        letter = input('Введите русскую букву: ').upper()
         if len(letter) == 1 and 1039 < ord(letter) < 1072:
             return letter
 

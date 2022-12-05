@@ -16,7 +16,7 @@ from aiogram.dispatcher.filters import Text
 def get_token(url: str) -> str:
     with open(url) as bt:
         return re.search(
-            r'(?<=BOT_TOKEN=)\w+:\w+$', [line for line in bt][0]
+            r'(?<=BOT_TOKEN=)\w+:\w+$', [line for line in bt][0]  # pyright: ignore [reportOptionalSubscript]
             )[0]
 
 
