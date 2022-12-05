@@ -1,11 +1,12 @@
-# Эхо-бот [aiogram]
-# https://stepik.org/lesson/759399/step/1?unit=761415 — create bot
-# https://stepik.org/lesson/759399/step/3?unit=761415 — handlers register
-# https://stepik.org/lesson/759399/step/4?unit=761415 — add photos handler
-# My Solution
+"""Эхо-бот [aiogram]
+https://stepik.org/lesson/759399/step/1?unit=761415 — create bot
+https://stepik.org/lesson/759399/step/3?unit=761415 — handlers register
+https://stepik.org/lesson/759399/step/4?unit=761415 — add photos handler
+"""
+
+import re
 
 from aiogram import Bot, Dispatcher, executor, types
-import re
 
 
 def get_token(url: str) -> str:
