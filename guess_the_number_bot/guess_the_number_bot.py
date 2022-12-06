@@ -12,8 +12,6 @@ from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text
 
-from users import users
-
 
 def get_token(url: str) -> str:
     with open(url) as bt:
@@ -26,6 +24,8 @@ API_TOKEN = get_token('.env')
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+
+users = {}
 
 ATTEMPTS = 5
 
