@@ -24,3 +24,4 @@ API_TOKEN = get_token('.env')
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+
