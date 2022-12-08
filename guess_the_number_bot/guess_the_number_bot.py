@@ -6,23 +6,20 @@ https://stepik.org/lesson/759400/step/5?unit=761416
 """
 
 import random
-import re
 
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text
 
-
-def get_token(url: str) -> str:
-    with open(url) as bt:
-        return re.search(
-            r'(?<=BOT_TOKEN=)\w+:\w+$', [line for line in bt][0]  # pyright: ignore [reportOptionalSubscript]
-            )[0]
+from environs import Env
 
 
-API_TOKEN = get_token('.env')
+env = Env()
+env.read_env()
 
-bot = Bot(token=API_TOKEN)
+BOT_TOKEN = env('BOT_TOKEN')
+
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 
 users = {}
