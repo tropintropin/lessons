@@ -3,6 +3,8 @@
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, KeyboardButtonPollType
+from aiogram.types.web_app_info import WebAppInfo
+
 
 from environs import Env
 
@@ -21,6 +23,7 @@ keyboard.add(KeyboardButton(text='Отправить телефон', request_co
 keyboard.add(KeyboardButton(text='Отправить геолокацию', request_location=True))
 keyboard.add(KeyboardButton(text='Создать викторину', request_poll=KeyboardButtonPollType(type=types.PollType.QUIZ)))
 keyboard.add(KeyboardButton(text='Создать опрос', request_poll=KeyboardButtonPollType(type=types.PollType.REGULAR)))
+keyboard.add(KeyboardButton(text='Start Web App', web_app=WebAppInfo(url="https://stepik.org/")))
 
 
 async def process_start_command(message: types.Message):
