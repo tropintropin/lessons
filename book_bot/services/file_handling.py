@@ -1,13 +1,14 @@
 # https://stepik.org/lesson/759408/step/7?unit=761424
 # https://stepik.org/lesson/759408/step/8?discussion=6823054&thread=solutions&unit=761424
+# https://stepik.org/lesson/759408/step/9?discussion=6827447&thread=solutions&unit=761424
 
 import re
 
 
-# BOOK_PATH = 'book/book.txt'
-# PAGE_SIZE = 1050
+BOOK_PATH = 'book/book.txt'
+PAGE_SIZE = 1050
 
-# book: dict[int, str] = {}
+book: dict[int, str] = {}
 
 
 # Функция, возвращающая строку с текстом страницы и ее размер
@@ -33,19 +34,21 @@ def _get_part_text(text: str, start: int, size: int) -> tuple[str, int]:
 
 
 # Функция, формирующая словарь книги
-# def prepare_book(path: str) -> None:
-#     with open(path, mode='r', encoding='utf-8') as f:
-#         counter = 1
-#         start = 0
-#         while True:
-#             _get_part_text(f, start, PAGE_SIZE) = page, size
-#             book.update({counter: page})
-#             counter += 1
-#             start = size + 1
+def prepare_book(path: str) -> None:
+    with open(path, mode='r', encoding='utf-8') as f:
+        text: str = f.read()
 
-
-# prepare_book('book_bot/book/book.txt')
+    page_counter: int = 1
+    start: int = 0
+    while True:
+        page, size = _get_part_text(text, start, PAGE_SIZE)
+        if page:
+            book.update({page_counter: page.lstrip()})
+            page_counter += 1
+            start += size
+        else:
+            break
 
 
 # Вызов функции prepare_book для подготовки книги из текстового файла
-# prepare_book(BOOK_PATH)
+prepare_book(BOOK_PATH)
