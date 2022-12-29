@@ -32,7 +32,7 @@ async def process_beginning_command(message: Message):
         text=text,
         reply_markup=create_pagination_keyboard(
             'backward',
-            f'{users_db[message.from_user.id]["page"]}/{len(book)}',
+            f'{users_db[message.from_user.id]["page"]}/{len(book)}',  # TODO create book_lenght var to reuse code
             'forward'
         )
     )
