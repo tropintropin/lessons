@@ -11,13 +11,13 @@ import string
 import time
 
 
-def get_password_lenght() -> int:
+def get_password_length() -> int:
     while True:
-        password_lenght = input(
+        password_length = input(
             'Введите желаемую длину вашего пароля цифрами:\n'
         )
-        if password_lenght.isdecimal():
-            return int(password_lenght)
+        if password_length.isdecimal():
+            return int(password_length)
         else:
             time.sleep(1)
             print('Пожалуйста, используйте арабские цифры!')
@@ -39,11 +39,11 @@ def get_chars() -> str:
 
 def create_password() -> None:
     while True:
-        password_lenght = get_password_lenght()
+        password_length = get_password_length()
         time.sleep(1)
         password_chars = get_chars()
         time.sleep(1)
-        password = ''.join(random.sample(password_chars, password_lenght))
+        password = ''.join(random.sample(password_chars, password_length))
         print(f'Ваш пароль:\n{password}\n')
         time.sleep(1)
         is_new_password = input(
