@@ -29,4 +29,3 @@ def create_password(user_settings=None) -> str:
     password = ''.join(random.sample(password_chars, password_length))
     return password
 
-print(string.printable)
