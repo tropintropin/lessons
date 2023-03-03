@@ -7,39 +7,27 @@ the ability to create multiple passwords.
 Author: Valery Tropin, tropin.tropin@gmail.com
 '''
 
-import random
-import string
+import asyncio
+
+import handlers
 
 from aiogram import Bot, Dispatcher
-from aiogram.filters import Command, CommandStart
-from aiogram.types import Message
 
 from config import BOT_TOKEN
+from keyboards import set_main_menu
 
 
-bot: Bot = Bot(token=BOT_TOKEN)
-dp: Dispatcher = Dispatcher()
+async def main():
+    bot: Bot = Bot(token=BOT_TOKEN)
+    dp: Dispatcher = Dispatcher()
 
+    await set_main_menu(bot)
 
-async def process_start_command(message: Message):
-    await message.answer('Введите желаемую длину вашего пароля цифрами:\n')
+    dp.include_router(handlers.router)
 
-
-async def process_get_password(message: Message):
-    password_length = message.text
-    try:
-        if 74 < int(password_length) < 0:
-            await message.reply('Недопустимый размер пароля')
-        else:
-            password = ''.join(random.sample(string.printable, 8))
-            await message.answer(f'Ваш пароль: {password}')
-    except Exception as ex2:
-        await message.answer('Необходимо ввести число от 1 до 74')
-
-
-dp.message.register(CommandStart(), process_start_command)
-dp.message.register(Command(commands='get_password'), process_get_password)
+    await bot.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot)
 
 
 if __name__ == '__main__':
-    dp.run_polling(bot)
+    asyncio.run(main())
