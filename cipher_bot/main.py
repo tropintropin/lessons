@@ -4,6 +4,7 @@ Features:
 choice of password length (with type checking),
 the ability for the user to exclude unwanted characters,
 the ability to create multiple passwords.
+Requirements: aiogram v3 (beta)
 Author: Valery Tropin, tropin.tropin@gmail.com
 '''
 
