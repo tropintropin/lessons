@@ -2,7 +2,7 @@ import json
 import requests
 
 
-city = "Санкт-Петербург"
+city = input("Введите город: ")
 
 server = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -15,9 +15,8 @@ weather_data = requests.get(url).json()
 
 weather_data_structure = json.dumps(weather_data, indent=2)
 
-# print(weather_data_structure)
-
 temperature = round(weather_data['main']['temp'])
+
 temperature_feels = round(weather_data['main']['feels_like'])
 
 print(f'Сейчас в городе {city} {temperature}°C')
