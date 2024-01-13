@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 This module provides functions for converting dates between the Gregorian and Julian calendars.
 It includes methods for calculating the Julian Day Number (JDN) for both calendars,
@@ -10,6 +11,9 @@ Please note that the functions in this module do not perform any error handling.
 They assume that the user will always provide input in the correct format (yyyy.mm.dd),
 and that this input represents a valid date. If the user enters invalid data,
 the functions may behave unpredictably or raise exceptions.
+
+Do 'chmod +x calendar_calculations.py' for making the script executable.
+Then, you can run the script using './calendar_calculations.py'.
 """
 
 
