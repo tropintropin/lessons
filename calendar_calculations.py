@@ -100,7 +100,7 @@ def get_julian_gregorian_from_JDN() -> None:
     Returns:
         None
     """
-    JDN: int = int(input("Enter your JDN (only numbers accepted):\n"))
+    JDN: int = int(round(float(input("Enter your JDN (only numbers accepted):\n"))))
     date_julian = calculate_JDN2julian(JDN=JDN)
     date_gregorian = calculate_JDN2gregorian(JDN=JDN)
     print(
