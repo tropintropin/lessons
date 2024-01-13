@@ -102,7 +102,8 @@ def calculate_JDN_to_gregorian(JDN: int) -> dict[str, int]:
     """Convert Julian Day Number (JDN) to date in Gregorian calendar.
 
     Returns:
-        dict[str, int]: Dictionary containing the year, month, and day in Gregorian calendar corresponding to the Julian Day Number (JDN).
+        dict[str, int]: Dictionary containing the year, month, and day
+        in Gregorian calendar corresponding to the Julian Day Number (JDN).
     """
 
     _a = JDN + 32044
@@ -156,14 +157,24 @@ def get_julian_gregorian_from_JDN() -> None:
     """
 
     JDN: int = int(round(float(input("Enter your JDN (only numbers accepted):\n"))))
-    date_julian = calculate_JDN_to_julian(JDN=JDN)
-    date_gregorian = calculate_JDN_to_gregorian(JDN=JDN)
+
     weekday = get_weekday(JDN=JDN)
+
+    date_julian = calculate_JDN_to_julian(JDN=JDN)
+    day_julian = date_julian.get("day_julian")
+    month_julian = date_julian.get("month_julian")
+    year_julian = date_julian.get("year_julian")
+
+    date_gregorian = calculate_JDN_to_gregorian(JDN=JDN)
+    day_gredorian = date_gregorian.get("day_gredorian")
+    month_gredorian = date_gregorian.get("month_gredorian")
+    year_gredorian = date_gregorian.get("year_gredorian")
+
     print(
         f"""
 For your Julian Day Number (JDN) = {JDN}:
-Julian Date = {date_julian.get('day_julian')}.{date_julian.get('month_julian')}.{date_julian.get('year_julian')}
-Gregorian date = {date_gregorian.get('day_gredorian')}.{date_gregorian.get('month_gredorian')}.{date_gregorian.get('year_gredorian')}
+Julian Date = {day_julian}.{month_julian}.{year_julian}
+Gregorian date = {day_gredorian}.{month_gredorian}.{year_gredorian}
 Weekday: {weekday}
 """
     )
@@ -178,7 +189,9 @@ def convert_gregorian_to_julian() -> None:
     """
 
     yyyymmdd = input(
-        "Enter your Gregorian date in the next format: Year.Month.Day in numbers:\n"
+        """Enter your Gregorian date in the next format:
+Year.Month.Day in numbers:
+"""
     )
     year: int
     month: int
@@ -188,14 +201,18 @@ def convert_gregorian_to_julian() -> None:
 
     JDN = calculate_gregorian_to_JDN(year=year, month=month, day=day)
 
-    date_julian = calculate_JDN_to_julian(JDN=JDN)
     weekday = get_weekday(JDN=JDN)
+
+    date_julian = calculate_JDN_to_julian(JDN=JDN)
+    day_julian = date_julian.get("day_julian")
+    month_julian = date_julian.get("month_julian")
+    year_julian = date_julian.get("year_julian")
 
     print(
         f"""
 For your Gregorian date {day}.{month}.{year}:
 Julian Day Number (JDN) = {JDN}
-Julian Date = {date_julian.get('day_julian')}.{date_julian.get('month_julian')}.{date_julian.get('year_julian')}
+Julian Date = {day_julian}.{month_julian}.{year_julian}
 Weekday: {weekday}
 """
     )
@@ -210,7 +227,9 @@ def convert_julian_to_gregorian() -> None:
     """
 
     yyyymmdd = input(
-        "Enter your Julian date in the next format: Year.Month.Day in numbers:\n"
+        """Enter your Julian date in the next format:
+Year.Month.Day in numbers:
+"""
     )
     year: int
     month: int
@@ -219,15 +238,39 @@ def convert_julian_to_gregorian() -> None:
 
     JDN = calculate_julian_to_JDN(year=year, month=month, day=day)
 
-    date_gregorian = calculate_JDN_to_gregorian(JDN=JDN)
     weekday = get_weekday(JDN=JDN)
+
+    date_gregorian = calculate_JDN_to_gregorian(JDN=JDN)
+    day_gredorian = date_gregorian.get("day_gredorian")
+    month_gredorian = date_gregorian.get("month_gredorian")
+    year_gredorian = date_gregorian.get("year_gredorian")
 
     print(
         f"""
 For your Julian date {day}.{month}.{year}:
 Julian Day Number (JDN) = {JDN}
-Gregorian date = {date_gregorian.get('day_gredorian')}.{date_gregorian.get('month_gredorian')}.{date_gregorian.get('year_gredorian')}
+Gregorian date = {day_gredorian}.{month_gredorian}.{year_gredorian}
 Weekday: {weekday}
+"""
+    )
+
+
+def prompt_user_for_direction() -> str:
+    """Prompt the user to enter a direction for conversion method.
+
+    Allowing prompts:
+        "j": for conversion from Gregorian to Julian calendar
+        "g": for conversion from Julian to Gregorian calendar
+        "n": for conversion from JDN both to Julian and Gregorian calendars
+
+    Returns:
+        str: The user's input.
+    """
+
+    return input(
+        """Enter "j" to convert Gregorian date into Julian
+Enter "g" to convert Julian date into Gregorian
+Enter "n" to convert Julian Day Number (JDN) to Julian and Gregorian date:
 """
     )
 
@@ -240,28 +283,15 @@ def choose_conversion() -> None:
         and calls the appropriate function.
     """
 
-    def prompt_user_for_direction() -> str:
-        """Prompt the user to enter a direction for conversion between Gregorian and Julian calendars.
-
-        Prompts the user to enter either "j" for conversion from Gregorian to Julian,
-        or "g" for conversion from Julian to Gregorian.
-
-        Returns:
-            str: The user's input.
-        """
-        return input(
-            'Enter "j" to convert Gregorian date into Julian\nEnter "g" to convert Julian date into Gregorian\nEnter "n" to convert Julian Day Number (JDN) to Julian and Gregorian date:\n'
-        )
-
-    conversionprompt_user_for_direction = prompt_user_for_direction()
-    if conversionprompt_user_for_direction == "j":
+    user_prompt = prompt_user_for_direction()
+    if user_prompt == "j":
         return convert_gregorian_to_julian()
-    elif conversionprompt_user_for_direction == "g":
+    elif user_prompt == "g":
         return convert_julian_to_gregorian()
-    elif conversionprompt_user_for_direction == "n":
+    elif user_prompt == "n":
         return get_julian_gregorian_from_JDN()
     else:
-        print('Enter only "g" or "j" letters!')
+        print("Enter only "g", "j" or "n" letters!")
         return choose_conversion()
 
 
