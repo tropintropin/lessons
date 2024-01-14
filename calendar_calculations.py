@@ -291,7 +291,7 @@ def choose_conversion() -> None:
     elif user_prompt == "n":
         return get_julian_gregorian_from_JDN()
     else:
-        print("Enter only "g", "j" or "n" letters!")
+        print("Enter only 'g', 'j' or 'n' letters!")
         return choose_conversion()
 
 
