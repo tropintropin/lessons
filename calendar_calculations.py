@@ -17,11 +17,6 @@ described on the Wikipedia:
 Also, the descriptions of the algorithms are available on
 Alexander Krutov's site: [Юлианский день](http://krutov.org/algorithms/julianday).
 
-Please note that the functions in this module do not perform any error handling.
-They assume that the user will always provide input in the correct format (yyyy.mm.dd),
-and that this input represents a valid date. If the user enters invalid data,
-the functions may behave unpredictably or raise exceptions.
-
 Do 'chmod +x calendar_calculations.py' for making the script executable.
 Then, you can run the script using './calendar_calculations.py'.
 
@@ -31,6 +26,8 @@ Then, you can run the script using './calendar_calculations.py'.
 """
 
 # TODO: Include type(float) for JDN and days
+
+import argparse
 
 
 def calculate_gregorian_to_JDN(year: int, month: int, day: int) -> int:
@@ -148,15 +145,28 @@ def calculate_JDN_to_julian(JDN: int) -> dict[str, int]:
     }
 
 
-def get_julian_gregorian_from_JDN() -> None:
+def get_julian_gregorian_from_JDN(args: argparse.Namespace) -> None:
     """Convert Julian Day Number (JDN) to the dates in Gregorian and Julian calendars.
+
+    If the user enters invalid data, the function will print
+    an error message and terminate without raising an exception.
+
+    Args:
+        args (argparse.Namespace): Arguments parsed from the command line.
+
+    Raises:
+        ValueError: If the input JDN is not in the correct type int.
 
     Returns:
         None: Prints the Julian and Gregorian dates corresponding
         to the Julian Day Number (JDN) and the weekday.
     """
 
-    JDN: int = int(round(float(input("Enter your JDN (only numbers accepted):\n"))))
+    try:
+        JDN: int = int(args.date)
+    except ValueError:
+        print("Invalid input. Please enter a valid Julian Day Number (JDN).")
+        return
 
     weekday = get_weekday(JDN=JDN)
 
@@ -180,24 +190,32 @@ Weekday: {weekday}
     )
 
 
-def convert_gregorian_to_julian() -> None:
+def convert_gregorian_to_julian(args: argparse.Namespace) -> None:
     """Convert date in Gregorian calendar to date in Julian calendar.
+
+    If the user enters invalid data, the function will print
+    an error message and terminate without raising an exception.
+
+    Args:
+        args (argparse.Namespace): Arguments parsed from the command line.
+
+    Raises:
+        ValueError: If the input date is not in the correct format (YYYY.MM.DD).
 
     Returns:
         None: Prints the Julian Day Number (JDN), Julian date,
         and weekday corresponding to the input Gregorian date.
     """
 
-    yyyymmdd = input(
-        """Enter your Gregorian date in the next format:
-Year.Month.Day in numbers:
-"""
-    )
-    year: int
-    month: int
-    day: int
-
-    year, month, day = [int(v) for v in yyyymmdd.split(".")]
+    try:
+        yyyymmdd = args.date
+        year: int
+        month: int
+        day: int
+        year, month, day = [int(v) for v in yyyymmdd.split(".")]
+    except ValueError:
+        print("Invalid input. Please enter a valid date in the format YYYY.MM.DD.")
+        return
 
     JDN = calculate_gregorian_to_JDN(year=year, month=month, day=day)
 
@@ -218,23 +236,33 @@ Weekday: {weekday}
     )
 
 
-def convert_julian_to_gregorian() -> None:
+def convert_julian_to_gregorian(args: argparse.Namespace) -> None:
     """Convert date in Julian calendar to date in Gregorian calendar.
+
+    If the user enters invalid data, the function will print
+    an error message and terminate without raising an exception.
+
+    Args:
+        args (argparse.Namespace): Arguments parsed from the command line.
+
+    Raises:
+        ValueError: If the input date is not in the correct format (YYYY.MM.DD).
 
     Returns:
         None: Prints the Julian Day Number (JDN), Gregorian date,
         and weekday corresponding to the input Julian date.
     """
 
-    yyyymmdd = input(
-        """Enter your Julian date in the next format:
-Year.Month.Day in numbers:
-"""
-    )
-    year: int
-    month: int
-    day: int
-    year, month, day = [int(v) for v in yyyymmdd.split(".")]
+    try:
+        yyyymmdd = args.date
+        year: int
+        month: int
+        day: int
+
+        year, month, day = [int(v) for v in yyyymmdd.split(".")]
+    except ValueError:
+        print("Invalid input. Please enter a valid date in the format YYYY.MM.DD.")
+        return
 
     JDN = calculate_julian_to_JDN(year=year, month=month, day=day)
 
@@ -255,45 +283,53 @@ Weekday: {weekday}
     )
 
 
-def prompt_user_for_direction() -> str:
-    """Prompt the user to enter a direction for conversion method.
+def choose_conversion(args: argparse.Namespace) -> None:
+    """Choose the conversion direction between Gregorian and
+    Julian calendars based on the flags passed by the user.
 
-    Allowing prompts:
-        "j": for conversion from Gregorian to Julian calendar
-        "g": for conversion from Julian to Gregorian calendar
-        "n": for conversion from JDN both to Julian and Gregorian calendars
+    The function expects one of three flags to be passed:
+        '-j': for converting a Gregorian date to Julian
+        '-g': for converting a Julian date to Gregorian
+        '-n': for converting a Julian Day Number (JDN) to Julian and Gregorian date
 
-    Returns:
-        str: The user's input.
-    """
+    If no flag or an incorrect flag is passed, the function prints an error message.
 
-    return input(
-        """Enter "j" to convert Gregorian date into Julian
-Enter "g" to convert Julian date into Gregorian
-Enter "n" to convert Julian Day Number (JDN) to Julian and Gregorian date:
-"""
-    )
-
-
-def choose_conversion() -> None:
-    """Choose conversion direction between Gregorian and Julian calendars.
+    Args:
+        args (argparse.Namespace): Arguments parsed from the command line.
 
     Returns:
-        None: Asks the user to choose the conversion direction
-        and calls the appropriate function.
+        None: The function doesn't return any value.
+        Instead, it either calls the appropriate conversion function
+        or prints an error message.
     """
 
-    user_prompt = prompt_user_for_direction()
-    if user_prompt == "j":
-        return convert_gregorian_to_julian()
-    elif user_prompt == "g":
-        return convert_julian_to_gregorian()
-    elif user_prompt == "n":
-        return get_julian_gregorian_from_JDN()
+    if args.j:
+        return convert_gregorian_to_julian(args)
+    elif args.g:
+        return convert_julian_to_gregorian(args)
+    elif args.n:
+        return get_julian_gregorian_from_JDN(args)
     else:
-        print("Enter only 'g', 'j' or 'n' letters!")
-        return choose_conversion()
+        print("Enter only '-j', '-g' or '-n' flags!")
 
 
 if __name__ == "__main__":
-    choose_conversion()
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(
+        prog="JDN Calculator",
+        description="Convert dates between the Gregorian and Julian calendars and calculate Julian Day Number (JDN)",
+    )
+    parser.add_argument("date", help="User date in format YYYY.MM.DD", type=str)
+    parser.add_argument(
+        "-j", action="store_true", help="Convert Gregorian date to Julian"
+    )
+    parser.add_argument(
+        "-g", action="store_true", help="Convert Julian date to Gregorian"
+    )
+    parser.add_argument(
+        "-n",
+        action="store_true",
+        help="Convert Julian Day Number (JDN) to Julian and Gregorian date",
+    )
+
+    args = parser.parse_args()
+    choose_conversion(args)
